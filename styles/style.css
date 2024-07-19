@@ -319,6 +319,9 @@ width: fit-content;. */
   margin: 0;
   border: 1px solid #fff;
   accent-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Кнопки */
@@ -384,15 +387,9 @@ width: fit-content;. */
 соседа зажатого чекбокса». Подумайте, 
 как такое описать. */
 
-.search-form__pseudo-checkbox {
-  position: relative;
-}
-
 .search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
-  position: absolute;
   content: '';
-  top: 1px;
-  left: 1px;
+  display: block;
   width: 15px;
   height: 15px;
   background: #fff
