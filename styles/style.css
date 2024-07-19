@@ -16,6 +16,13 @@ html {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   background-color: #1b1919;
+
+  /* Расположить блок .content 
+  посередине .page. */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 h1,
@@ -35,4 +42,459 @@ fieldset {
 ul,
 ol {
   list-style: none;
+}
+
+/* Расположить элементы .content в строку, 
+прижав к низу вертикальной оси. */
+
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end; 
+  justify-content: center;
+  margin: 0 30px;
+
+  /* Задать горизонтальные размеры .content
+  и отступы между его элементами. */
+
+  gap: 30px;
+}
+
+/* Расположить элементы .search-form 
+в строку и пропорционально распределить 
+между ними свободное пространство, 
+прижать их к началу контейнера. */
+
+.search-form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+/* Установить вертикальный размер для 
+.content__list и добавить скролл при 
+переполнении. */
+
+.content__list {
+  height: 298px;
+  overflow: scroll;
+}
+
+/* Растянуть .content__details 
+во всю доступную ширину и высоту 
+контейнера и добавить отступы между 
+заголовком и зоной с карточками. */
+
+.content__details {
+  height: 100%;
+  width: 100%; 
+}
+
+.title {
+  margin-bottom: 26px;
+}
+
+.content__list-item {
+  margin-bottom: 30px;
+}
+
+.content__list-item:last-child {
+  margin-bottom: 0px;
+}
+
+/* 2 ЭТАП
+Задать размеры контейнеру 
+.result__video-container и 
+добавить отступ снизу. */
+
+.result__video-container {
+  width: 711px;
+  height: 386px;
+  margin-bottom: 16px;
+}
+
+.result__video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Расположить элементы 
+внутри контейнера 
+.content__video-card в строку, 
+прижав к началу контейнера 
+по дополнительной оси. */
+
+.content__video-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+/* Задать размеры 
+.content__video-card-thumbnail 
+и замостить в них изображение. */
+
+.content__video-card-thumbnail {
+  width: 194px;
+  height: 103px;
+  background-repeat: repeat;
+}
+
+/* Сделать так, чтобы 
+.content__video-card-description-container 
+занимал всё доступное пространство, 
+не занятое картинкой. */
+
+.content__video-card-description-container {
+width: 100%;
+}
+
+/* Шаг 3. Позиционирование прелоадеров */
+
+/* Прелоадеры должны появляться в двух местах:
+поверх .result__video-container;
+поверх .content__list. */
+
+.result__video-container,
+.content__list {
+  position: relative;
+}
+
+/* Шаг 4. Стили текстов */
+
+/* Оформить текст элементов 
+.search-form__fieldset-title. 
+Обратите внимание на вес шрифта, 
+размер, отступы. */
+
+.search-form__fieldset-title {
+  font-family: 'Fira Sans Condensed';
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Оформить элемент .title 
+и вложенный в него .content__accent. */
+
+.title {
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 94%;
+  text-transform: uppercase;
+}
+
+.content__accent {
+  color: #545050;
+}
+
+/* Убрать дефолтное подчёркивание 
+и заменить цвет текста у ссылки 
+.content__card-link. */
+
+.content__card-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Оформить текст 
+.content__video-card-title. */
+
+.content__video-card-title {
+  font-family: Oswald;
+  font-weight: 700;
+  font-size: 30px;
+  text-transform: uppercase;
+  line-height: 100%;
+}
+
+/* И присмотреться к высоте линии в 
+.content__video-card-description. */
+
+.content__video-card-description {
+  line-height: 16.2px;
+}
+
+/* Шаг 5. Элементы формы и кнопки */
+
+/* скрыть лишние лейблы и 
+браузерные чекбоксы, чтобы потом 
+нарисовать поверх них свои. */
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Сбросьте border у fieldset */
+
+.search-form__fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Вам нужно расставить элементы внутри 
+.search-form__label в линию. 
+И при этом подогнать ширину контейнера 
+под размер внутренних элементов. 
+Для этого пригодится правило 
+width: fit-content;. */
+
+.search-form__label {
+ display: inline-flex;
+ width: fit-content;
+ align-items: center;
+ cursor: pointer;
+ gap: 5px;
+}
+
+/* Мы рекомендуем установить на 
+кликабельные элементы cursor: pointer;. */
+
+/* При вёрстке текстового поля 
+обращайте внимание на управление 
+размерами, границей, цветом текста, 
+семейством шрифта, размером шрифта, 
+фоном. Некоторые из этих свойств не 
+наследуются. */
+
+.search-form__textfield {
+  padding: 2.5px 14px 2.5px 0;
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  font-family: 'Fira Sans Condensed';
+  font-size: 18px;
+  font-weight: 400;
+  color:#fff;
+  min-width: 225px;
+  appearance: none;
+}
+
+.search-form__textfield::placeholder {
+  color: rgb(255, 255, 255 / 0.7);
+  font-family: 'Fira Sans Condensed';
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* Обёртка .search-form__checkbox-list
+создана специально для того, 
+чтобы выстроить чекбоксы в линию. */
+
+.search-form__checkbox-list {
+  display: inline-flex;
+  gap: 15px;
+}
+
+/* Текстовому полю нужно задать 
+свойство appearance: none;. 
+Так в разных браузерах будут нужные 
+вам стили. Это трюк. */
+
+/* Когда будете рисовать 
+.search-form__pseudo-checkbox, 
+учитывайте, что в нём появится элемент,
+который должен оказаться точно по 
+центру. Если присмотритесь к макету, 
+заметите, что внутренний квадрат 
+включённого чекбокса чуть меньше
+самого чекбокса. Это мы сверстаем 
+отдельно следующим шагом. */
+
+.search-form__pseudo-checkbox {
+  height: 19px;
+  width: 19px;
+  margin: 0;
+  border: 1px solid #fff;
+  accent-color: #000000;
+}
+
+/* Кнопки */
+
+.button {
+  cursor: pointer;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  background-color: transparent;
+  border: 1px solid white;
+  font-family: 'Fira Sans Condensed';
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+}
+
+.search-form__submit-button {
+  width: 194px;
+}
+
+.more-button {
+  width: 399px;
+  margin: 2px;
+}
+
+/* Шаг 6. Состояния элементов 
+формы и кнопок */
+
+/* Текстовое поле ввода */
+
+/* У этого элемента нужно 
+сбросить обводку в состоянии фокуса 
+и вместо этого делать границу у лейбла, 
+который его окружает. Лейбл должен 
+получать границу только когда у поля
+находится в состоянии focus-visible,
+но не focus. Чтобы такое реализовать,
+можно применить хитрую комбинацию 
+псевдоклассов — :has(:focus-visible). */
+
+.search-form__textfield {
+  outline: none;
+}
+
+.search-form__label {
+  outline: none;
+}
+
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid white;
+  outline-offset: 1px;
+}
+
+/* Активный чекбокс */
+
+/* На макете при нажатии чекбокса 
+внутри появляется квадрат. Он чуть 
+меньше чекбокса. Мы предлагаем вам 
+реализовать его псевдоэлементом для 
+.search-form__pseudo-checkbox. 
+У вас получится непростая комбинация 
+селекторов «псевдоэлемент для первого 
+соседа зажатого чекбокса». Подумайте, 
+как такое описать. */
+
+.search-form__pseudo-checkbox {
+  position: relative;
+}
+
+.search-form__checkbox:checked + .search-form__pseudo-checkbox::before {
+  position: absolute;
+  content: '';
+  top: 1px;
+  left: 1px;
+  width: 15px;
+  height: 15px;
+  background: #fff
+}
+
+/* Фокус в чекбоксе */
+
+/* Если вы применяли псевдокласс 
+:has() для текстового инпута, здесь 
+тоже будет работать это правило. Вам 
+не придётся прописывать отдельно состояние 
+focus и focus-visible для чекбокса. 
+Но если вы пошли другим путём, задумайтесь,
+как добиться того, чтобы состояние 
+focus не создавало обводку у 
+родительского элемента, а состояние 
+focus-visible создавало. */
+
+/* Подчёркивание текста у чекбокса 
+при наведении на лейбл */
+
+.search-form__checkbox-list > .search-form__label:hover {
+  text-decoration: solid underline rgb(255, 255, 255) 1px;
+  text-underline-offset: 2px;
+}
+
+.search-form__label-text {
+  line-height: 18px;
+}
+
+/* Обратите внимание, 
+что подчёркивание должно 
+появляться при наведении на любую 
+точку лейбла, а не только на сам текст. */
+
+/* Состояния кнопок */
+
+/* У всех кнопок на странице 
+три состояния: :hover, :active, 
+:focus-visible. Состояние :focus 
+должно быть сброшено. Эти правила 
+применяются ко всем кнопкам 
+на странице. */
+
+.button:hover {
+  text-decoration: solid underline rgb(255, 255, 255) 1px;
+  text-underline-offset: 2px;
+}
+
+.button:active {
+  background-color: #545050;
+}
+
+.button:focus-visible {
+  outline: 1px solid white;
+  outline-offset: 1px;
+}
+ 
+/* Шаг 7. Состояния карточек */
+
+/* Текущая карточка */
+
+/* Первая карточка должна быть активной, 
+а при переключении активная карточка 
+должна выделяться. Это поведение уже 
+написано на JavaScript. Но в CSS должны 
+оказаться соответствующие стили для 
+селектора .content__card-link_current. 
+Есть одна особенность: чтобы фон 
+применился, ссылку .content__card-link 
+нужно сделать блочным элементом. */
+
+.content__card-link  {
+  display: block;
+  margin: 2px;
+}
+
+.content__card-link_current {
+  background-color: #545050;
+}
+
+/* Другие состояния карточки */
+
+/* У каждой карточки доступны такие 
+состояния: :hover, :active и 
+:focus-visible. Чтобы состояние 
+:focus-visible работало корректно, 
+придётся сбросить обводку на состоянии 
+:focus. Все стили вы легко скопируете 
+из макета. */
+/* Есть только одна хитрость. 
+Чтобы обводка в состоянии 
+:focus-visible была видна целиком, 
+задайте небольшой margin элементу 
+.content__card-link. Хватит двух пикселей 
+со всех сторон. */
+.content__card-link:hover {
+  text-decoration: solid underline rgb(255, 255, 255) 1px;
+  text-underline-offset: 2px;
+}
+
+.content__card-link:focus-visible {
+  outline: 1px solid white;
+  outline-offset: 1px;;
 }
