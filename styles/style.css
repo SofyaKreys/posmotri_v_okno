@@ -66,11 +66,9 @@ ol {
 прижать их к началу контейнера. */
 
 .search-form{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: flex-end;
+  display: grid;
+  grid-template-columns: 270px 1fr 1fr;
+  align-items: end;
 }
 
 /* Установить вертикальный размер для 
@@ -79,7 +77,8 @@ ol {
 
 .content__list {
   height: 298px;
-  overflow: scroll;
+  overflow: auto;
+  position: relative;
 }
 
 /* Растянуть .content__details 
@@ -89,11 +88,8 @@ ol {
 
 .content__details {
   height: 100%;
-  width: 100%; 
-}
-
-.title {
-  margin-bottom: 26px;
+  /* width: 100%;  */
+  min-width: 399px;
 }
 
 .content__list-item {
@@ -108,12 +104,6 @@ ol {
 Задать размеры контейнеру 
 .result__video-container и 
 добавить отступ снизу. */
-
-.result__video-container {
-  width: 711px;
-  height: 386px;
-  margin-bottom: 16px;
-}
 
 .result__video {
   height: 100%;
@@ -140,7 +130,8 @@ ol {
 .content__video-card-thumbnail {
   width: 194px;
   height: 103px;
-  background-repeat: repeat;
+  object-position: center;
+  object-fit: cover;
 }
 
 /* Сделать так, чтобы 
@@ -149,7 +140,7 @@ ol {
 не занятое картинкой. */
 
 .content__video-card-description-container {
-width: 100%;
+  width: 100%;
 }
 
 /* Шаг 3. Позиционирование прелоадеров */
@@ -158,11 +149,12 @@ width: 100%;
 поверх .result__video-container;
 поверх .content__list. */
 
-.result__video-container,
-.content__list {
+.result__video-container {
+  width: 711px;
+  height: 386px;
+  margin-bottom: 16px;
   position: relative;
 }
-
 /* Шаг 4. Стили текстов */
 
 /* Оформить текст элементов 
@@ -171,7 +163,7 @@ width: 100%;
 размер, отступы. */
 
 .search-form__fieldset-title {
-  font-family: 'Fira Sans Condensed';
+  font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
 }
@@ -180,11 +172,12 @@ width: 100%;
 и вложенный в него .content__accent. */
 
 .title {
-  font-family: Oswald;
+  font-family: Oswald, Arial, sans-serif;
   font-weight: 700;
   font-size: 75px;
   line-height: 94%;
   text-transform: uppercase;
+  margin-bottom: 26px;
 }
 
 .content__accent {
@@ -195,20 +188,19 @@ width: 100%;
 и заменить цвет текста у ссылки 
 .content__card-link. */
 
-.content__card-link {
-  text-decoration: none;
-  color: #fff;
-}
-
 /* Оформить текст 
 .content__video-card-title. */
 
 .content__video-card-title {
-  font-family: Oswald;
+  font-family: Oswald, Arial, sans-serif;
   font-weight: 700;
   font-size: 30px;
   text-transform: uppercase;
   line-height: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
 }
 
 /* И присмотреться к высоте линии в 
@@ -241,6 +233,7 @@ width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  align-self: baseline;
 }
 
 /* Вам нужно расставить элементы внутри 
@@ -249,14 +242,6 @@ width: 100%;
 под размер внутренних элементов. 
 Для этого пригодится правило 
 width: fit-content;. */
-
-.search-form__label {
- display: inline-flex;
- width: fit-content;
- align-items: center;
- cursor: pointer;
- gap: 5px;
-}
 
 /* Мы рекомендуем установить на 
 кликабельные элементы cursor: pointer;. */
@@ -272,19 +257,20 @@ width: fit-content;. */
   padding: 2.5px 14px 2.5px 0;
   background-color: transparent;
   border: none;
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
-  font-family: 'Fira Sans Condensed';
+  border-top: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
   color:#fff;
   min-width: 225px;
   appearance: none;
+  outline: none;
 }
 
 .search-form__textfield::placeholder {
   color: rgb(255, 255, 255 / 0.7);
-  font-family: 'Fira Sans Condensed';
+  font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-size: 18px;
   font-weight: 400;
 }
@@ -332,7 +318,7 @@ width: fit-content;. */
   padding-bottom: 6px;
   background-color: transparent;
   border: 1px solid white;
-  font-family: 'Fira Sans Condensed';
+  font-family: 'Fira Sans Condensed', Arial, sans-serif;
   font-weight: 700;
   font-size: 18px;
   color: #fff;
@@ -340,6 +326,8 @@ width: fit-content;. */
 
 .search-form__submit-button {
   width: 194px;
+  justify-self: end;
+  align-self: end;
 }
 
 .more-button {
@@ -362,13 +350,14 @@ width: fit-content;. */
 можно применить хитрую комбинацию 
 псевдоклассов — :has(:focus-visible). */
 
-.search-form__textfield {
-  outline: none;
-}
-
 .search-form__label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  cursor: pointer;
+  gap: 5px;
   outline: none;
-}
+ }
 
 .search-form__label:has(:focus-visible) {
   outline: 1px solid white;
@@ -465,6 +454,12 @@ focus-visible создавало. */
 .content__card-link  {
   display: block;
   margin: 2px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.content__card-link:active {
+  background-color: #545050;
 }
 
 .content__card-link_current {
@@ -486,6 +481,7 @@ focus-visible создавало. */
 задайте небольшой margin элементу 
 .content__card-link. Хватит двух пикселей 
 со всех сторон. */
+
 .content__card-link:hover {
   text-decoration: solid underline rgb(255, 255, 255) 1px;
   text-underline-offset: 2px;
